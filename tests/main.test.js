@@ -7,23 +7,23 @@ test('adds 1 + 2 to equal 3', () => {
 
 //Random Number tests
 test('Generates random number between 9 and 0', () => {
-    let test = main.randomNumberTest(10, 0)
-    expect(test).toBeGreaterThanOrEqual(0)
-    expect(test).toBeLessThan(10)
+    let randomNumberTestOne = main.randomNumberTest(10, 0)
+    expect(randomNumberTestOne).toBeGreaterThanOrEqual(0)
+    expect(randomNumberTestOne).toBeLessThan(10)
 
 });
 
 test('Generates random number between 20 and 0', () => {
-    let test = main.randomNumberTest(20, 0)
-    expect(test).toBeGreaterThanOrEqual(0)
-    expect(test).toBeLessThan(20)
+    let randomNumberTestTwo = main.randomNumberTest(20, 0)
+    expect(randomNumberTestTwo).toBeGreaterThanOrEqual(0)
+    expect(randomNumberTestTwo).toBeLessThan(20)
 
 });
 
 test('Generates random number between 1 and 0', () => {
-    let test = main.randomNumberTest(2, 0)
-    expect(test).toBeGreaterThanOrEqual(0)
-    expect(test).toBeLessThan(2)
+    let randomNumberTestThree = main.randomNumberTest(2, 0)
+    expect(randomNumberTestThree).toBeGreaterThanOrEqual(0)
+    expect(randomNumberTestThree).toBeLessThan(2)
 
 });
 
