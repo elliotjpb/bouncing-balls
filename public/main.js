@@ -2,7 +2,7 @@ let canvas, context
 let balls = []
 
 canvas = document.getElementById("bouncingBallsCanvas")
-context = canvas.getContext('2d')
+context = context = canvas?.getContext('2d')
 
 class Ball {
     constructor(mouseX, mouseY, speedX, speedY) {
@@ -46,6 +46,31 @@ function drawBall(ball) {
     context.fill()
 }
 
+
+//For unit testing only
+//Calls each function for
+//https://caolan.uk/articles/writing-for-node-and-the-browser/
+(function(exports){
+
+    exports.sumTest = function(a, b) {
+        return sum(a, b)
+    }
+
+    exports.randomNumberTest = function(max, min) {
+        return randomNumber(max, min)
+    }
+
+})(typeof exports === 'undefined'? this['main']={}: exports);
+
+function sum(a, b) {
+    return a + b;
+}
+
+function friction(ball) {
+    const friction = 0.1
+    ball.speedX >= 0 ? ball.speedX -= friction : ball.speedX += friction
+}
+
 function ballPhysics(ball) {
     //Allows balls to fall
     const gravity = 0.9
@@ -67,15 +92,13 @@ function ballPhysics(ball) {
     }
 }
 
-function friction(ball) {
-    const friction = 0.1
-    ball.speedX >= 0 ? ball.speedX -= friction : ball.speedX += friction
-}
-
 function loop() {
     //Background
-    context.fillStyle = 'white'
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    if (context !== undefined) {
+        context.fillStyle = 'white'
+        context.fillRect(0, 0, canvas.width, canvas.height)
+    }
+
 
     //Looping through ballsArray to draw and animate balls
     for (const i of balls) {
