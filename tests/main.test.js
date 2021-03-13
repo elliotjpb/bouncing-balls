@@ -24,13 +24,23 @@ test('Generates random number between 1 and 0', () => {
 
 //Friction tests
 test('Check friction is subtracted', () => {
-    let ballTest = main.subtractedFrictionTest()
-    expect(ballTest.speedX).toBe(9.9)
+    let subFrictionTest = main.subtractedFrictionTest()
+    expect(subFrictionTest.speedX).toBe(9.9)
 });
 
 test('Check friction is added', () => {
-    let ballTest = main.addedFrictionTest()
-    expect(ballTest.speedX).toBe(-1.9)
+    let addFrictionTest = main.addedFrictionTest()
+    expect(addFrictionTest.speedX).toBe(-1.9)
+});
+
+test('Checks creation of ball object', () => {
+    let ballTest = main.ballTest()
+    expect(ballTest.x).toBe(100)
+    expect(ballTest.y).toBe(100)
+    expect(ballTest.size).toBe(7)
+    expect(ballTest.drag).toBe(0.4)
+    expect(ballTest.speedX).toBe(10)
+    expect(ballTest.speedY).toBe(10)
 });
 
 
