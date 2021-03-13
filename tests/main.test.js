@@ -1,9 +1,4 @@
 const main = require('../public/main');
-//import sum from '../public/main'
-
-test('adds 1 + 2 to equal 3', () => {
-    expect(main.sumTest(1, 2)).toBe(3);
-});
 
 //Random Number tests
 test('Generates random number between 9 and 0', () => {
@@ -25,6 +20,17 @@ test('Generates random number between 1 and 0', () => {
     expect(randomNumberTestThree).toBeGreaterThanOrEqual(0)
     expect(randomNumberTestThree).toBeLessThan(2)
 
+});
+
+//Friction tests
+test('Check friction is subtracted', () => {
+    let ballTest = main.subtractedFrictionTest()
+    expect(ballTest.speedX).toBe(9.9)
+});
+
+test('Check friction is added', () => {
+    let ballTest = main.addedFrictionTest()
+    expect(ballTest.speedX).toBe(-1.9)
 });
 
 

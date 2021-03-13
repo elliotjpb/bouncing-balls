@@ -1,3 +1,40 @@
+//For unit testing only
+//Calls function to allow it to be tested in tests/main.test.js
+//https://caolan.uk/articles/writing-for-node-and-the-browser/
+(function(exports){
+
+    exports.randomNumberTest = function(max, min) {
+        return randomNumber(max, min)
+    }
+
+    exports.subtractedFrictionTest = function() {
+
+        const ballTest = new Ball(
+            100,
+            100,
+            10,
+            10)
+
+        friction(ballTest)
+        return ballTest
+    }
+
+    exports.addedFrictionTest = function() {
+
+        const ballTest = new Ball(
+            100,
+            100,
+            -2,
+            10)
+
+        friction(ballTest)
+        return ballTest
+    }
+
+})(typeof exports === 'undefined'? this['main']={}: exports);
+
+
+
 let canvas, context
 let balls = []
 
@@ -47,20 +84,7 @@ function drawBall(ball) {
 }
 
 
-//For unit testing only
-//Calls each function for
-//https://caolan.uk/articles/writing-for-node-and-the-browser/
-(function(exports){
 
-    exports.sumTest = function(a, b) {
-        return sum(a, b)
-    }
-
-    exports.randomNumberTest = function(max, min) {
-        return randomNumber(max, min)
-    }
-
-})(typeof exports === 'undefined'? this['main']={}: exports);
 
 function sum(a, b) {
     return a + b;
@@ -110,4 +134,3 @@ function loop() {
 }
 
 loop()
-
