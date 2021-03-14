@@ -7,6 +7,15 @@
         return randomNumber(max, min)
     }
 
+    exports.ballTest = function() {
+
+        return new Ball(
+            100,
+            100,
+            10,
+            10)
+    }
+
     exports.subtractedFrictionTest = function() {
 
         const ballTest = new Ball(
@@ -21,19 +30,17 @@
 
     exports.addedFrictionTest = function() {
 
-        const ballTest = new Ball(
+        const ballFrictionTest = new Ball(
             100,
             100,
             -2,
             10)
 
-        friction(ballTest)
-        return ballTest
+        friction(ballFrictionTest)
+        return ballFrictionTest
     }
 
 })(typeof exports === 'undefined'? this['main']={}: exports);
-
-
 
 let canvas, context
 let balls = []
