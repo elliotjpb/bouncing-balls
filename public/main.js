@@ -7,6 +7,10 @@
         return randomNumber(max, min)
     }
 
+    exports.distanceCalculationTest = function (dx, dy) {
+        return calculateDistance(dx, dy)
+    }
+
     exports.ballTest = function() {
 
         return new Ball(
@@ -49,17 +53,53 @@ canvas = document.getElementById("bouncingBallsCanvas")
 context = context = canvas?.getContext('2d')
 
 class Ball {
+
+    COLOURS = {
+        RED: "red",
+        YELLOW: "yellow",
+        GREEN: "green",
+        BLUE: "blue"
+    }
+
     constructor(mouseX, mouseY, speedX, speedY) {
         this.x = mouseX
         this.y = mouseY
         this.size = 7
+        this.colour = "black"
         this.drag = 0.4
         this.speedX = speedX
         this.speedY = speedY
     }
+
+    drawBall() {
+        context.beginPath()
+        context.fillStyle = this.colour
+        context.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
+        context.fill()
+    }
+
+    detectCollisions() {
+        for(const ball of balls) {
+            if (!(this === ball)) {
+                const dx = this.x - ball.x
+                const dy = this.y - ball.y
+                const distance = calculateDistance(dx, dy)
+                this.colourCollision(ball, distance)
+            }
+        }
+    }
+
+    colourCollision(ball, distance) {
+        //If two different balls touch
+        if (distance < this.size + ball.size) {
+            //Colour changes to a random colour from COLOURS enum
+            ball.colour = this.color = this.COLOURS[Object.keys(this.COLOURS)[randomNumber(4, 0)]]
+        }
+    }
+
 }
 
-function mousePressed() {
+canvas?.addEventListener('click', function (event){
     //creates new ball object with the current mouse positions and random speed
     const ball = new Ball(
         event.clientX,
@@ -76,25 +116,14 @@ function mousePressed() {
     if (balls[balls.length - 1].speedY % 2 === 0) {
         balls[balls.length - 1].speedY = - randomNumber(12, 2)
     }
+})
+
+function calculateDistance(dx, dy) {
+    return Math.sqrt(dx ** 2 + dy ** 2)
 }
 
 function randomNumber(max, min) {
-    const num = Math.floor(Math.random() * (max - min) + min)
-    return num
-}
-
-function drawBall(ball) {
-    context.fillStyle = "black"
-    context.beginPath()
-    context.arc(ball.x, ball.y, ball.size, 0, 2.5 * Math.PI)
-    context.fill()
-}
-
-
-
-
-function sum(a, b) {
-    return a + b;
+    return Math.floor(Math.random() * (max - min) + min)
 }
 
 function friction(ball) {
@@ -133,9 +162,10 @@ function loop() {
 
     //Looping through ballsArray to draw and animate balls
     for (const i of balls) {
-        drawBall(i)
+        i.drawBall()
         ballPhysics(i)
         friction(i)
+        i.detectCollisions()
     }
     requestAnimationFrame(loop)
 }

@@ -48,5 +48,14 @@ describe('Ball Class tests', () => {
     })
 })
 
+describe('Distance calculations', () => {
+    test('Calculates distance between 2 and 2', () => {
+        expect(Math.floor(main.distanceCalculationTest(2, 2))).toBe(2)
+    })
+    test('Calculates distance between 3 and 8', () => {
+        expect(Math.floor(main.distanceCalculationTest(3, 8))).toBe(8)
+    })
+})
+
 
 
