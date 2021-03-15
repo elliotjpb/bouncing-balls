@@ -1,55 +1,8 @@
-//For unit testing only
-//Calls function to allow it to be tested in tests/main.test.js
-//https://caolan.uk/articles/writing-for-node-and-the-browser/
-(function(exports){
-
-    exports.randomNumberTest = function(max, min) {
-        return randomNumber(max, min)
-    }
-
-    exports.distanceCalculationTest = function (dx, dy) {
-        return calculateDistance(dx, dy)
-    }
-
-    exports.ballTest = function() {
-
-        return new Ball(
-            100,
-            100,
-            10,
-            10)
-    }
-
-    exports.subtractedFrictionTest = function() {
-
-        const ballTest = new Ball(
-            100,
-            100,
-            10,
-            10)
-
-        friction(ballTest)
-        return ballTest
-    }
-
-    exports.addedFrictionTest = function() {
-
-        const ballFrictionTest = new Ball(
-            100,
-            100,
-            -2,
-            10)
-
-        friction(ballFrictionTest)
-        return ballFrictionTest
-    }
-
-})(typeof exports === 'undefined'? this['main']={}: exports);
-
 let canvas, context
 let balls = []
 
 canvas = document.getElementById("bouncingBallsCanvas")
+//canvas? - to check if undefined for unit tests
 context = context = canvas?.getContext('2d')
 
 class Ball {
@@ -96,7 +49,6 @@ class Ball {
             ball.colour = this.color = this.COLOURS[Object.keys(this.COLOURS)[randomNumber(4, 0)]]
         }
     }
-
 }
 
 canvas?.addEventListener('click', function (event){
@@ -107,6 +59,7 @@ canvas?.addEventListener('click', function (event){
         randomNumber(12, 2),
         randomNumber(12, 2)
     )
+    //adds ball to balls array
     balls.push(ball)
 
     //Random direction
@@ -152,14 +105,13 @@ function ballPhysics(ball) {
     }
 }
 
-function loop() {
+setInterval(draw, 1000 / 35);
+function draw() {
     //Background
     if (context !== undefined) {
         context.fillStyle = 'white'
         context.fillRect(0, 0, canvas.width, canvas.height)
     }
-
-
     //Looping through ballsArray to draw and animate balls
     for (const i of balls) {
         i.drawBall()
@@ -167,7 +119,53 @@ function loop() {
         friction(i)
         i.detectCollisions()
     }
-    requestAnimationFrame(loop)
 }
 
-loop()
+//For unit testing only
+//Current workaround to be able to test functions
+//Calls function to allow it to be tested in tests/main.test.js
+//https://caolan.uk/articles/writing-for-node-and-the-browser/
+(function(exports){
+
+    exports.randomNumberTest = function(max, min) {
+        return randomNumber(max, min)
+    }
+
+    exports.distanceCalculationTest = function (dx, dy) {
+        return calculateDistance(dx, dy)
+    }
+
+    exports.ballTest = function() {
+
+        return new Ball(
+            100,
+            100,
+            10,
+            10)
+    }
+
+    exports.subtractedFrictionTest = function() {
+
+        const ballTest = new Ball(
+            100,
+            100,
+            10,
+            10)
+
+        friction(ballTest)
+        return ballTest
+    }
+
+    exports.addedFrictionTest = function() {
+
+        const ballFrictionTest = new Ball(
+            100,
+            100,
+            -2,
+            10)
+
+        friction(ballFrictionTest)
+        return ballFrictionTest
+    }
+
+})(typeof exports === 'undefined'? this['main']={}: exports);

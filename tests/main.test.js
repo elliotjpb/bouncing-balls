@@ -5,7 +5,6 @@ describe('Random number tests', () => {
         let randomNumberTestOne = main.randomNumberTest(10, 0)
         expect(randomNumberTestOne).toBeGreaterThanOrEqual(0)
         expect(randomNumberTestOne).toBeLessThan(10)
-
     })
 
     test('Generates random number between 20 and 0', () => {
@@ -19,7 +18,6 @@ describe('Random number tests', () => {
         let randomNumberTestThree = main.randomNumberTest(2, 0)
         expect(randomNumberTestThree).toBeGreaterThanOrEqual(0)
         expect(randomNumberTestThree).toBeLessThan(2)
-
     })
 })
 
