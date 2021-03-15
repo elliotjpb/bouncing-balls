@@ -10,7 +10,7 @@ When a ball collides with another, they both change to a random colour.
 
 ### Build Instructions
 
-Application currently runs locally.
+Application currently only runs locally, however the interactive part is available on [CodePen](https://codepen.io/elliotjpb/pen/wvoZWBe).
 
 Node and npm are required to run this project.
 
