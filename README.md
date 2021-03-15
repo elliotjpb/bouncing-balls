@@ -14,9 +14,17 @@ Application currently runs locally.
 
 Node and npm are required to run this project.
 
+Nodemon for the server: `npm install -g nodemon`
+
 To run project:
 
-`npm start`
+Make sure dependencies are installed:
+
+`npm install`
+
+Run project
+
+`nodemon server-local.js`
 
 Testing requires Jest:
 
