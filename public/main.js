@@ -59,7 +59,7 @@ class Ball {
     }
 }
 
-function mousePressed() {
+canvas?.addEventListener('click', function (event){
     //creates new ball object with the current mouse positions and random speed
     const ball = new Ball(
         event.clientX,
@@ -76,7 +76,7 @@ function mousePressed() {
     if (balls[balls.length - 1].speedY % 2 === 0) {
         balls[balls.length - 1].speedY = - randomNumber(12, 2)
     }
-}
+})
 
 function randomNumber(max, min) {
     const num = Math.floor(Math.random() * (max - min) + min)
